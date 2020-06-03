@@ -13,10 +13,5 @@ class Sample:
         :return: the euclidean distance between s_id and other
         """
         # Euclidean distance: dist(x, y) = ||x-y|| = sqrt(sum(_(i=1)^n (xi-yi)^2)) (x and y are SAMPLES)
-
         distance = math.sqrt(sum([(a - b) ** 2 for a, b in zip(self.genes, other.genes)]))
         return distance
-        #
-        # dist = [(a - b) ** 2 for a, b in zip(self.genes, other.genes)]
-        # dist = math.sqrt(sum(dist))
-        # return dist

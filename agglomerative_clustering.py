@@ -11,7 +11,7 @@ class AgglomerativeClustering:
     def fill_distance_mat(self):
         for i, sample in enumerate(self.samples):
             for j in range(i + 1, len(self.samples)):
-                self.distance_map[sample.s_id][self.samples[j].s_id] = sample.compute_euclidean_distance(
+                self.distance_map[self.samples[i].s_id][self.samples[j].s_id] = self.samples[i].compute_euclidean_distance(
                     self.samples[j])
 
     def run(self, max_clusters):
