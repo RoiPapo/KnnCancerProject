@@ -26,9 +26,8 @@ class Cluster:
 
         :return: the purity measurement
         """
-        tag_occurrences_data = {'BRCA': 0, 'KIRC': 0, 'COAD': 0, 'LUAD': 0, 'PRAD ': 0}
+        tag_occurrences_data = {'BRCA': 0, 'KIRC': 0, 'COAD': 0, 'LUAD': 0, 'PRAD': 0}
         for sample in self.cluster_samples:
-            if sample.label in tag_occurrences_data:
                 tag_occurrences_data[sample.label] += 1
 
         # Purity = (the dominant label)/(cluster size)

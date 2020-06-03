@@ -6,8 +6,7 @@ class AgglomerativeClustering:
     def __init__(self, link, samples):
         self.link = link  # {Single Link, Complete Link}
         self.samples = samples  # a List of objects of class Sample
-        self.distance_map = [[0 for x in range(300)] for y in range(300)]
-        self.complete_distance_map = [[0 for x in range(300)] for y in range(300)]
+        self.distance_map = [[0 for x in range(50)] for y in range(50)]
 
     def fill_distance_mat(self):
         for i, sample in enumerate(self.samples):
@@ -29,7 +28,7 @@ class AgglomerativeClustering:
 
         min_distances = float('inf')
         while len(cluster_list) > max_clusters:
-            for i in range(len(cluster_list)-1):
+            for i in range(len(cluster_list) - 1):
                 for j in range(i + 1, len(cluster_list)):
                     current_distance = SingleLink.compute(None, cluster_list[i], cluster_list[j],
                                                           self.distance_map)
@@ -43,5 +42,4 @@ class AgglomerativeClustering:
             elif cluster_list[min(index_of_best_distance)].c_id == item_to_delete:
                 cluster_list.remove(cluster_list[min(index_of_best_distance)])
             min_distances = float('inf')
-            print(len(cluster_list))
         return cluster_list
