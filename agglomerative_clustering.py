@@ -6,7 +6,7 @@ class AgglomerativeClustering:
     def __init__(self, link, samples):
         self.link = link  # {Single Link, Complete Link}
         self.samples = samples  # a List of objects of class Sample
-        self.distance_map = [[0 for x in range(50)] for y in range(50)]
+        self.distance_map = [[0 for x in range(50)] for y in range(49)]
 
     def fill_distance_mat(self):
         for i in range(len(self.samples)-1):

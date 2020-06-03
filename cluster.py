@@ -5,9 +5,6 @@ class Cluster:
         self.cluster_samples.append(samples)  # string
         self.print_sample_array= []
 
-    def Union(lst1, lst2):
-
-        return final_list
 
     def merge(self, other):
         """
