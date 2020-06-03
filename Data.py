@@ -1,6 +1,7 @@
 import pandas as pd
 from sample import Sample
 
+
 class Data:
     def __init__(self, path):
         df = pd.read_csv(path).T
@@ -16,4 +17,4 @@ class Data:
             label = value.pop()
             sample_list.append(Sample(key, value, label))
 
-        return sample_list    
+        return sample_list
