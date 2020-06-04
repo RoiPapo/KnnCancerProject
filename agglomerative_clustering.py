@@ -14,6 +14,7 @@ class AgglomerativeClustering:
                 self.distance_map[self.samples[i].s_id][self.samples[j].s_id] = self.samples[i].compute_euclidean_distance(
                     self.samples[j])
 
+
     def run(self, max_clusters):
         """
         :param max_clusters: INTEGER indicating the maximum number of clusters
@@ -34,12 +35,14 @@ class AgglomerativeClustering:
                                                           self.distance_map)
                     if current_distance < min_distances:
                         min_distances = current_distance
-                        index_of_best_distance = {i, j}
-
-            item_to_delete = cluster_list[min(index_of_best_distance)].merge(cluster_list[max(index_of_best_distance)])
-            if cluster_list[max(index_of_best_distance)].c_id == item_to_delete:
-                cluster_list.remove(cluster_list[max(index_of_best_distance)])
-            elif cluster_list[min(index_of_best_distance)].c_id == item_to_delete:
-                cluster_list.remove(cluster_list[min(index_of_best_distance)])
+                        index_of_best_distance = (i, j)
+            index1, index2 = index_of_best_distance
+            item_to_delete = cluster_list[index1].merge(cluster_list[index2])
+            # item_to_delete = cluster_list[min(index_of_best_distance)].merge(cluster_list[max(index_of_best_distance)])
+            cluster_list = list(filter(lambda c: c.c_id is not item_to_delete, cluster_list))
+            # if cluster_list[max(index_of_best_distance)].c_id == item_to_delete:
+            #     cluster_list.remove(cluster_list[max(index_of_best_distance)])
+            # elif cluster_list[min(index_of_best_distance)].c_id == item_to_delete:
+            #     cluster_list.remove(cluster_list[min(index_of_best_distance)])
             min_distances = float('inf')
         return cluster_list

@@ -3,8 +3,7 @@ class Cluster:
         self.c_id = c_id  # number of the cluster
         self.cluster_samples = []  # list of samples
         self.cluster_samples.append(samples)  # string
-        self.print_sample_array= []
-
+        self.print_sample_array = []
 
     def merge(self, other):
         """
@@ -12,12 +11,14 @@ class Cluster:
         :return: merged clusters by the minimal number of the two clusters
         """
         if self.c_id < other.c_id:
-            self.cluster_samples = list(set(self.cluster_samples) | set(other.cluster_samples))
+            # self.cluster_samples = list(set(self.cluster_samples) | set(other.cluster_samples))
+            self.cluster_samples.extend(other.cluster_samples)
             return other.c_id
         else:
-            self.other.cluster_samples = list(set(self.cluster_samples) | set(other.cluster_samples))
+            # other.cluster_samples = list(set(self.cluster_samples) | set(other.cluster_samples))
+            other.cluster_samples.extend(self.cluster_samples)
             return self.c_id
-        
+
     def compute_purity(self):
         """
 
@@ -25,7 +26,7 @@ class Cluster:
         """
         tag_occurrences_data = {'BRCA': 0, 'KIRC': 0, 'COAD': 0, 'LUAD': 0, 'PRAD': 0}
         for sample in self.cluster_samples:
-                tag_occurrences_data[sample.label] += 1
+            tag_occurrences_data[sample.label] += 1
 
         # Purity = (the dominant label)/(cluster size)
         self.dominant_label = max(tag_occurrences_data, key=tag_occurrences_data.get)
@@ -46,4 +47,3 @@ class Cluster:
         # print(", dominant label: " + self.dominant_label, end=' ')
         # print(", purity:", end=' ')
         # print(self.compute_purity())
-

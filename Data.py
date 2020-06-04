@@ -5,7 +5,9 @@ from sample import Sample
 class Data:
     def __init__(self, path):
         df = pd.read_csv(path).T
+        # df = pd.read_csv(path)
         self.data = df.to_dict(orient="list")
+        print ("hi")
 
     def create_samples(self):
         """
@@ -18,3 +20,4 @@ class Data:
             sample_list.append(Sample(key, value, label))
 
         return sample_list
+
