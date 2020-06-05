@@ -9,11 +9,15 @@ class AgglomerativeClustering:
         self.distance_map = [[0 for x in range(50)] for y in range(49)]
 
     def fill_distance_mat(self):
-        for i in range(len(self.samples)-1):
+        # for isample in self.samples:
+        #     for jsample in self.samples:
+        #         if self.samples.index(jsample) > self.samples.index(isample):
+        #             self.distance_map[isample.s_id][jsample.s_id] = isample.compute_euclidean_distance(jsample)
+        for i in range(len(self.samples) - 1):
             for j in range(i + 1, len(self.samples)):
-                self.distance_map[self.samples[i].s_id][self.samples[j].s_id] = self.samples[i].compute_euclidean_distance(
+                self.distance_map[self.samples[i].s_id][self.samples[j].s_id] = self.samples[
+                    i].compute_euclidean_distance(
                     self.samples[j])
-
 
     def run(self, max_clusters):
         """
@@ -29,6 +33,13 @@ class AgglomerativeClustering:
 
         min_distances = float('inf')
         while len(cluster_list) > max_clusters:
+            # for icluster in cluster_list:
+            #    for jcluster in cluster_list:
+            #        if cluster_list.index(jcluster) > cluster_list.index(icluster):
+            #            current_distance = SingleLink.compute(None, icluster, jcluster, self.distance_map)
+            #            if current_distance < min_distances:
+            #                min_distances = current_distance
+            #                index_of_best_distance = (cluster_list.index(icluster), cluster_list.index(jcluster))
             for i in range(len(cluster_list) - 1):
                 for j in range(i + 1, len(cluster_list)):
                     current_distance = SingleLink.compute(None, cluster_list[i], cluster_list[j],
